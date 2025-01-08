@@ -1,10 +1,10 @@
-const Goal = require("../models/goalModel");
+const Goal = require('../models/goalModel');
 
 const getGoals = async (req, res) => {
   try {
     const goals = await Goal.find();
     res.status(200).json({
-      message: "Get all goals",
+      message: 'Get all goals',
       data: goals,
     });
   } catch (err) {
@@ -16,7 +16,7 @@ const getCurrentGoal = async (req, res) => {
   try {
     const goal = await Goal.findOne({ isCurrentGoal: true });
     res.status(200).json({
-      message: "Get current goal",
+      message: 'Get current goal',
       data: goal,
     });
   } catch (err) {
@@ -37,7 +37,7 @@ const createGoal = async (req, res) => {
     const goalRes = await Goal.findById(newGoal._id);
 
     res.status(200).json({
-      message: "Goal created!",
+      message: 'Goal created!',
       data: goalRes,
     });
   } catch (err) {
@@ -57,9 +57,9 @@ const updateGoal = async (req, res) => {
 
       const goalRes = await Goal.findById(updatedGoal._id);
 
-      res.status(200).json({ message: "Goal updated!", data: goalRes });
+      res.status(200).json({ message: 'Goal updated!', data: goalRes });
     } else {
-      res.status(404).json({ message: "Goal not found!", data: [] });
+      res.status(404).json({ message: 'Goal not found!', data: [] });
     }
   } catch (error) {
     res.status(500).json({ message: error.message, data: {} });
@@ -77,9 +77,9 @@ const updateCurrentGoal = async (req, res) => {
 
       const goalRes = await Goal.findById(updatedGoal._id);
 
-      res.status(200).json({ message: "Current goal updated!", data: goalRes });
+      res.status(200).json({ message: 'Current goal updated!', data: goalRes });
     } else {
-      res.status(404).json({ message: "No current goal!", data: [] });
+      res.status(404).json({ message: 'No current goal!', data: [] });
     }
   } catch (error) {
     res.status(500).json({ message: error.message, data: {} });
@@ -90,9 +90,7 @@ const deleteGoal = async (req, res) => {
   try {
     const goal = await Goal.findByIdAndDelete(req.params.id);
     if (goal) {
-      return res
-        .status(200)
-        .json({ message: "Goal deleted!", id: req.params.id });
+      return res.status(200).json({ message: 'Goal deleted!', id: req.params.id });
     }
   } catch (error) {
     return res.status(500).json({ message: error.message });

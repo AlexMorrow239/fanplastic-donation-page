@@ -1,7 +1,7 @@
-const router = require("express").Router();
-const payFastController = require("../controllers/payFast");
+const router = require('express').Router();
+const payFastController = require('../controllers/payFast');
 
-router.post("/itn", (req, res) => {
+router.post('/itn', (req, res) => {
   payFastController.createTransaction(req, res);
 });
 

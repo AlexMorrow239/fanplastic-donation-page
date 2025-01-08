@@ -11,9 +11,7 @@ export default function BoxMessages({ isMessageUpdated, setIsMessageUpdated }) {
       try {
         const payments = await paymentsService.fetchPayments();
         setMessages(payments);
-      } catch (error) {
-        console.log(error.message);
-      }
+      } catch (error) {}
     };
     fetchPmts();
     setIsMessageUpdated(false);

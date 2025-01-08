@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const paymentSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: true,
     },
     amount: { type: Number, required: true },
@@ -12,8 +12,10 @@ const paymentSchema = new mongoose.Schema(
     message: { type: String },
     anonymous: {
       type: Boolean,
-      default: false
+      default: false,
     },
-  }, {timestamps: true, });
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Payment", paymentSchema);
+module.exports = mongoose.model('Payment', paymentSchema);

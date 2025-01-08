@@ -13,7 +13,7 @@ const fetchCurrentGoal = async () => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       const error = new Error('Something went wrong');
       throw error.message;
     }

@@ -1,11 +1,8 @@
-const Payment = require("../models/paymentModel");
-const User = require("../models/userModel");
-const Goal = require("../models/goalModel");
+const Payment = require('../models/paymentModel');
+const User = require('../models/userModel');
+const Goal = require('../models/goalModel');
 
 const createTransaction = async (req, res) => {
-  console.log("ITN request received:", JSON.stringify(req.body)); // Log the request body for debugging
-  console.log("Headers: " + JSON.stringify(req.headers));
-
   const {
     m_payment_id,
     pf_payment_id,
@@ -32,7 +29,7 @@ const createTransaction = async (req, res) => {
     signature,
   } = req.body;
 
-  if (payment_status === "COMPLETE") {
+  if (payment_status === 'COMPLETE') {
     // Create a transaction in the database
     const user = await User.findOne({ email: email_address });
     if (user) {
@@ -40,7 +37,7 @@ const createTransaction = async (req, res) => {
         userId: user._id,
         amount: amount_gross,
         successful: true,
-        method: "credit",
+        method: 'credit',
       });
       paymentRes = await payment.save();
       // Update the user's paymentIds and totalPaid
@@ -48,7 +45,7 @@ const createTransaction = async (req, res) => {
       user.totalPaid = String(Number(user.totalPaid) + Number(amount_gross));
       const userRes = await user.save();
       res.status(200).json({
-        message: "Payment successful",
+        message: 'Payment successful',
         userData: userRes,
         paymentData: paymentRes,
       });
@@ -71,13 +68,13 @@ const createTransaction = async (req, res) => {
         userId: userRes._id,
         amount: amount_gross,
         successful: true,
-        method: "credit",
+        method: 'credit',
       });
       paymentRes = await payment.save();
       userRes.paymentIds.push(paymentRes._id);
       const userSaveRes = await userRes.save();
       res.status(200).json({
-        message: "Payment successful and user created",
+        message: 'Payment successful and user created',
         userData: userSaveRes,
         paymentData: paymentRes,
       });
@@ -85,19 +82,13 @@ const createTransaction = async (req, res) => {
 
     // //update the current goal after someone has paid
     const goal = await Goal.findOne({ isCurrentGoal: true });
-    console.log(`${goal.currentTotal}, ${goal.goalAmount}`);
     // // //
     goal.currentTotal += Number(amount_gross);
-    console.log(`${goal.currentTotal}`);
     goalRes = await goal.save();
-
-    console.log(
-      `The current total has now been updated to ${goal.currentTotal}`
-    );
   } else {
     // Log the error for debugging
-    console.error("Payment failed:", req.body);
-    res.status(200).json({ message: "Payment failed" });
+    console.error('Payment failed:', req.body);
+    res.status(200).json({ message: 'Payment failed' });
   }
 };
 

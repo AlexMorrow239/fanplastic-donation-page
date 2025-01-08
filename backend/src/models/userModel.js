@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const paymentSchema = require("./paymentModel");
+const paymentSchema = require('./paymentModel');
 
 const userSchema = new mongoose.Schema(
   {
@@ -14,8 +14,8 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
-      unique: [true, "Email is already registered"],
+      required: [true, 'Email is required'],
+      unique: [true, 'Email is already registered'],
       index: true,
     },
     address: {
@@ -42,11 +42,9 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    paymentIds: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Payment", default: [] },
-    ],
+    paymentIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Payment', default: [] }],
   },
-  {timestamps: true, }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);

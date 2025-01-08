@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const currencyExchangeSchema = new mongoose.Schema({
   success: {
@@ -12,7 +12,7 @@ const currencyExchangeSchema = new mongoose.Schema({
   base: {
     type: String,
     required: true,
-    default: "EUR",
+    default: 'EUR',
   },
   date: {
     type: String,
@@ -24,4 +24,4 @@ const currencyExchangeSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("CurrencyExchange", currencyExchangeSchema);
+module.exports = mongoose.model('CurrencyExchange', currencyExchangeSchema);

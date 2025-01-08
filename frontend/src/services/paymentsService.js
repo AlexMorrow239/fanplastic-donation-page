@@ -12,7 +12,7 @@ const updatePayment = async (updatedPayment) => {
       let res = await response.json();
       throw res.message || JSON.stringify(res);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       const error = new Error('Something went wrong');
       throw error.message;
     }
@@ -32,7 +32,7 @@ const fetchPayments = async () => {
   if (!response.ok) {
     try {
       let res = await response.json();
-      throw res.message || console.log(res);
+      throw res.message;
     } catch (err) {
       const error = new Error('Something went wrong');
       throw new Error(error);

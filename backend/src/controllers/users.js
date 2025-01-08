@@ -1,11 +1,11 @@
-const User = require("../models/userModel");
-const Payment = require("../models/paymentModel");
+const User = require('../models/userModel');
+const Payment = require('../models/paymentModel');
 
 const getUsers = async (req, res) => {
   try {
-    const users = await User.find().populate({ path: "paymentIds" });
+    const users = await User.find().populate({ path: 'paymentIds' });
     res.status(200).json({
-      message: "Get all users",
+      message: 'Get all users',
       data: users,
     });
   } catch (err) {
@@ -32,7 +32,7 @@ const createUser = async (req, res) => {
     if (existingUser) {
       //If the user already exists, update the user's info with whatever was entered
       return await updateUser(req, res);
-      
+
       //return res
       //  .status(409)
       //  .json({ message: "User already exists.", data: existingUser });
@@ -40,7 +40,7 @@ const createUser = async (req, res) => {
 
     // Save the new user
     const savedUser = await newUser.save();
-    res.status(201).json({ message: "User created.", data: savedUser });
+    res.status(201).json({ message: 'User created.', data: savedUser });
   } catch (err) {
     res.status(500).json({ message: err.message, data: {} });
   }
@@ -48,14 +48,13 @@ const createUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    console.log(req.params.id);
     const user = await User.findById(req.params.id).populate({
-      path: "paymentIds",
+      path: 'paymentIds',
     });
     if (user) {
-      res.status(200).json({ message: "Return user by ID!", data: user });
+      res.status(200).json({ message: 'Return user by ID!', data: user });
     } else {
-      res.status(404).json({ message: "User not found!", data: {} });
+      res.status(404).json({ message: 'User not found!', data: {} });
     }
   } catch (err) {
     res.status(500).json({ message: err.message, data: {} });
@@ -65,7 +64,7 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).populate({
-      path: "paymentIds",
+      path: 'paymentIds',
     });
     if (user) {
       const paymentIds = req?.body?.payments.map((x) => x.id);
@@ -77,15 +76,15 @@ const updateUser = async (req, res) => {
       user.country = req?.body?.country || user.country;
       user.state = req?.body?.state || user.state;
       user.phoneNumber = req?.body?.phoneNumber || user.phoneNumber;
-      user.zipCode= req?.body?.zipCode || user.zipCode;
+      user.zipCode = req?.body?.zipCode || user.zipCode;
       user.totalPaid = req?.body?.totalPaid || user.totalPaid;
       const updatedUser = await user.save();
       const userRes = await updatedUser.populate({
-        path: "paymentIds",
+        path: 'paymentIds',
       });
-      res.status(200).json({ message: "User updated!", data: userRes });
+      res.status(200).json({ message: 'User updated!', data: userRes });
     } else {
-      res.status(404).json({ message: "User not found!", data: [] });
+      res.status(404).json({ message: 'User not found!', data: [] });
     }
   } catch (error) {
     res.status(500).json({ message: error.message, data: {} });
@@ -98,7 +97,7 @@ const deleteUser = async (req, res) => {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-      return res.status(404).json({ message: "User not found!" });
+      return res.status(404).json({ message: 'User not found!' });
     }
 
     // Delete all payments associated with the user
@@ -113,7 +112,7 @@ const deleteUser = async (req, res) => {
     await User.deleteOne({ _id: user._id });
 
     return res.status(200).json({
-      message: "User and associated payments deleted!",
+      message: 'User and associated payments deleted!',
       id: req.params.id,
     });
   } catch (error) {
