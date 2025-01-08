@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import data from "../../assets/currencies.json";
-import { Dropdown, FormControl } from "react-bootstrap";
+import React, { useState } from 'react';
+import data from '../../assets/currencies.json';
+import { Dropdown, FormControl } from 'react-bootstrap';
 
 export default function CurrencyDropdown({ onChange }) {
-  const [symbol, setSymbol] = useState("EUR");
-  const [search, setSearch] = useState("");
+  const [symbol, setSymbol] = useState('EUR');
+  const [search, setSearch] = useState('');
 
   const handleSelect = (currencyCode) => {
     setSymbol(currencyCode);
@@ -45,10 +45,7 @@ export default function CurrencyDropdown({ onChange }) {
         />
         {filteredKeys.length ? (
           filteredKeys.map((key, index) => (
-            <Dropdown.Item
-              key={index}
-              onClick={() => handleSelect(data[key].code)}
-            >
+            <Dropdown.Item key={index} onClick={() => handleSelect(data[key].code)}>
               {data[key].name || data[key].code}
             </Dropdown.Item>
           ))

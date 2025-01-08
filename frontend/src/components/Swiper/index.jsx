@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import Tier from "../Tier";
+import Tier from '../Tier';
 // slider imports
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-import { FreeMode, Autoplay, Pagination, Navigation } from "swiper/modules";
+import { FreeMode, Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 function Slider({ setBaseDonationAmount, setSelectedButton, donationBoxRef }) {
   const responsiveOptions = {
@@ -41,7 +41,7 @@ function Slider({ setBaseDonationAmount, setSelectedButton, donationBoxRef }) {
         <div className="container-fluid">
           {/* Title */}
           <div className="titleblock ">
-            <h3 style={{ textAlign: "left" }}>our</h3>
+            <h3 style={{ textAlign: 'left' }}>our</h3>
             <h1 className="text-soapboxblue">Tiers</h1>
           </div>
 

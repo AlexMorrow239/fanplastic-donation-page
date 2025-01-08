@@ -1,7 +1,7 @@
-import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
-import CaptainLogo from "../../assets/captain_logo.svg";
+import CaptainLogo from '../../assets/captain_logo.svg';
 
 // import "./index.css";
 
@@ -12,44 +12,26 @@ export default function CustomNavbar() {
         <Navbar.Brand href="https://captainfanplastic.com/">
           <img
             src={CaptainLogo}
-            style={{ height: "64px", width: "auto" }}
+            style={{ height: '64px', width: 'auto' }}
             alt="Captain Fanplastic Logo"
           />
         </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="navbarSupportedContent"
-          className="ml-auto"
-        />
+        <Navbar.Toggle aria-controls="navbarSupportedContent" className="ml-auto" />
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="ml-auto" id="navbar-right">
-            <Nav.Link
-              href="https://captainfanplastic.com/curriculum"
-              rel="noopener noreferrer"
-            >
+            <Nav.Link href="https://captainfanplastic.com/curriculum" rel="noopener noreferrer">
               Curriculum
             </Nav.Link>
-            <Nav.Link
-              href="https://captainfanplastic.com/impact"
-              rel="noopener noreferrer"
-            >
+            <Nav.Link href="https://captainfanplastic.com/impact" rel="noopener noreferrer">
               Impact
             </Nav.Link>
-            <Nav.Link
-              href="https://captainfanplastic.com/getinvolved"
-              rel="noopener noreferrer"
-            >
+            <Nav.Link href="https://captainfanplastic.com/getinvolved" rel="noopener noreferrer">
               Get involved
             </Nav.Link>
-            <Nav.Link
-              href="https://captainfanplastic.com/gallery"
-              rel="noopener noreferrer"
-            >
+            <Nav.Link href="https://captainfanplastic.com/gallery" rel="noopener noreferrer">
               Gallery
             </Nav.Link>
-            <Nav.Link
-              href="https://captainfanplastic.com/aboutus"
-              rel="noopener noreferrer"
-            >
+            <Nav.Link href="https://captainfanplastic.com/aboutus" rel="noopener noreferrer">
               About us
             </Nav.Link>
             <Nav.Link href="shop">Shop</Nav.Link>

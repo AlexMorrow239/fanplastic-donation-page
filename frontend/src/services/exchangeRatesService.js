@@ -1,8 +1,8 @@
 // Exchange rates are fetched with a base currency of EUR
 // MUST CONVERT FROM NATIVE TO EUR FIRST, THEN FROM EUR TO ZAR
 const fetchExchangeRates = async () => {
-  const response = await fetch("http://localhost:9000/api/currency-exchange", {
-    method: "GET",
+  const response = await fetch('http://localhost:9000/api/currency-exchange', {
+    method: 'GET',
   });
 
   if (!response.ok) {
@@ -11,7 +11,7 @@ const fetchExchangeRates = async () => {
       throw res.message || JSON.stringify(res);
     } catch (err) {
       console.log(err);
-      const error = new Error("Something went wrong");
+      const error = new Error('Something went wrong');
       throw error.message;
     }
   }
@@ -21,10 +21,10 @@ const fetchExchangeRates = async () => {
 };
 
 const updateExchangeRates = async (exchangeRates) => {
-  const response = await fetch("http://localhost:9000/api/currency-exchange", {
-    method: "PUT",
+  const response = await fetch('http://localhost:9000/api/currency-exchange', {
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(exchangeRates),
   });
@@ -35,7 +35,7 @@ const updateExchangeRates = async (exchangeRates) => {
       throw res.message || JSON.stringify(res);
     } catch (err) {
       console.log(err);
-      const error = new Error("Something went wrong");
+      const error = new Error('Something went wrong');
       throw error.message;
     }
   }

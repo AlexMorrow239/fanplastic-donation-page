@@ -1,14 +1,11 @@
 const updatePayment = async (updatedPayment) => {
-  const response = await fetch(
-    "http://localhost:9000/api/payments/" + updatedPayment.email,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedPayment),
-    }
-  );
+  const response = await fetch('http://localhost:9000/api/payments/' + updatedPayment.email, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedPayment),
+  });
 
   if (!response.ok) {
     try {
@@ -16,7 +13,7 @@ const updatePayment = async (updatedPayment) => {
       throw res.message || JSON.stringify(res);
     } catch (err) {
       console.log(err);
-      const error = new Error("Something went wrong");
+      const error = new Error('Something went wrong');
       throw error.message;
     }
   }
@@ -25,10 +22,10 @@ const updatePayment = async (updatedPayment) => {
 };
 
 const fetchPayments = async () => {
-  const response = await fetch("http://localhost:9000/api/payments/", {
-    method: "GET",
+  const response = await fetch('http://localhost:9000/api/payments/', {
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
@@ -37,7 +34,7 @@ const fetchPayments = async () => {
       let res = await response.json();
       throw res.message || console.log(res);
     } catch (err) {
-      const error = new Error("Something went wrong");
+      const error = new Error('Something went wrong');
       throw new Error(error);
     }
   }

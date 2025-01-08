@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import data from "../../assets/currencies.json";
-import CurrencyDropdown from "../CurrencyDropdown";
-import exchangeRatesService from "../../services/exchangeRatesService";
-import Loading from "../Loading";
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import data from '../../assets/currencies.json';
+import CurrencyDropdown from '../CurrencyDropdown';
+import exchangeRatesService from '../../services/exchangeRatesService';
+import Loading from '../Loading';
 
 export default function DonateAmtCard({
   setProgressStep,
@@ -17,7 +17,7 @@ export default function DonateAmtCard({
   const navigate = useNavigate();
   const customAmountRef = useRef(null);
 
-  const [selectedCurrency, setSelectedCurrency] = useState("EUR");
+  const [selectedCurrency, setSelectedCurrency] = useState('EUR');
   const [amounts, setAmounts] = useState([50, 250, 500]);
   const [exchangeRates, setExchangeRates] = useState(null);
   const [tipEnabled, setTipEnabled] = useState(false);
@@ -28,7 +28,7 @@ export default function DonateAmtCard({
         const response = await exchangeRatesService.updateExchangeRates();
         setExchangeRates(response.data.rates);
       } catch (error) {
-        console.error("Error fetching exchange rates:", error);
+        console.error('Error fetching exchange rates:', error);
       }
     };
     fetchExchangeRates();
@@ -44,16 +44,16 @@ export default function DonateAmtCard({
       );
       setAmounts(convertedAmounts);
       switch (selectedButton) {
-        case "donate-amt1":
+        case 'donate-amt1':
           setBaseDonationAmount(convertedAmounts[0]);
           break;
-        case "donate-amt2":
+        case 'donate-amt2':
           setBaseDonationAmount(convertedAmounts[1]);
           break;
-        case "donate-amt3":
+        case 'donate-amt3':
           setBaseDonationAmount(convertedAmounts[2]);
           break;
-        case "":
+        case '':
           customAmountRef.current.value = baseDonationAmount;
           break;
         default:
@@ -61,7 +61,14 @@ export default function DonateAmtCard({
           break;
       }
     }
-  }, [selectedCurrency, exchangeRates]);
+  }, [
+    selectedCurrency,
+    exchangeRates,
+    setDonationAmount,
+    baseDonationAmount,
+    selectedButton,
+    setBaseDonationAmount,
+  ]);
 
   useEffect(() => {
     if (tipEnabled) {
@@ -70,15 +77,15 @@ export default function DonateAmtCard({
     } else {
       setDonationAmount(baseDonationAmount);
     }
-  }, [tipEnabled, baseDonationAmount]);
+  }, [tipEnabled, baseDonationAmount, setDonationAmount]);
 
   useEffect(() => {
-    if (customAmountRef.current && selectedButton === "") {
+    if (customAmountRef.current && selectedButton === '') {
       customAmountRef.current.value = baseDonationAmount;
     } else if (customAmountRef.current) {
-      customAmountRef.current.value = "";
+      customAmountRef.current.value = '';
     }
-  }, [selectedButton]);
+  }, [baseDonationAmount, selectedButton]);
 
   const handleCurrencyChange = (currency) => {
     setSelectedCurrency(currency);
@@ -87,13 +94,12 @@ export default function DonateAmtCard({
   const onAmountChange = (e) => {
     const { id, value } = e.target;
     setTipEnabled(false);
-    if (id === "donate-amt-custom") {
-      setSelectedButton("");
+    if (id === 'donate-amt-custom') {
+      setSelectedButton('');
       setBaseDonationAmount(parseFloat(value) || 0);
     } else {
       setSelectedButton(id);
-      const newAmount =
-        amounts[["donate-amt1", "donate-amt2", "donate-amt3"].indexOf(id)];
+      const newAmount = amounts[['donate-amt1', 'donate-amt2', 'donate-amt3'].indexOf(id)];
       setBaseDonationAmount(newAmount);
     }
     setDonationAmount(baseDonationAmount.toFixed(2));
@@ -105,15 +111,15 @@ export default function DonateAmtCard({
 
   const convertToZar = () => {
     const euroAmount = donationAmount / (exchangeRates[selectedCurrency] || 1);
-    return euroAmount * (exchangeRates["ZAR"] || 1);
+    return euroAmount * (exchangeRates['ZAR'] || 1);
   };
 
   const handleSubmission = (e) => {
     e.preventDefault();
     const zarAmount = convertToZar();
     setDonationAmount(zarAmount.toFixed(2));
-    setProgressStep("2");
-    navigate("/donate/2");
+    setProgressStep('2');
+    navigate('/donate/2');
   };
 
   if (!exchangeRates) {
@@ -122,12 +128,8 @@ export default function DonateAmtCard({
 
   return (
     <>
-      <div
-        className="btn-group my-1"
-        role="group"
-        aria-label="Basic radio toggle button group"
-      >
-        {["donate-amt1", "donate-amt2", "donate-amt3"].map((id, index) => (
+      <div className="btn-group my-1" role="group" aria-label="Basic radio toggle button group">
+        {['donate-amt1', 'donate-amt2', 'donate-amt3'].map((id, index) => (
           <div className="mx-1" key={id}>
             <input
               type="radio"
@@ -139,12 +141,8 @@ export default function DonateAmtCard({
               checked={selectedButton === id}
               onChange={onAmountChange}
             />
-            <label
-              className="btn btn-outline-inspire-green"
-              htmlFor={id}
-              id={id}
-            >
-              {amounts[index]}{" "}
+            <label className="btn btn-outline-inspire-green" htmlFor={id} id={id}>
+              {amounts[index]}{' '}
               {data[selectedCurrency].symbol_native ||
                 data[selectedCurrency].symbol ||
                 selectedCurrency}
@@ -163,7 +161,7 @@ export default function DonateAmtCard({
           placeholder="Custom Amount"
           min="0"
           ref={customAmountRef}
-          style={{ margin: "0" }}
+          style={{ margin: '0' }}
           onChange={onAmountChange}
         />
       </div>
@@ -178,10 +176,7 @@ export default function DonateAmtCard({
             checked={tipEnabled}
             onChange={handleTipToggle}
           />
-          <label
-            className="form-check-label mx-1 text-muted"
-            htmlFor="messageSwitch"
-          >
+          <label className="form-check-label mx-1 text-muted" htmlFor="messageSwitch">
             Add a 1% tip to your donation to cover transaction fees
           </label>
         </div>
@@ -196,8 +191,8 @@ export default function DonateAmtCard({
         </div>
         <div className="text-center mt-4">
           <span className="text-muted">
-            You are donating {donationAmount} in {selectedCurrency} which is
-            equivalent to {convertToZar().toFixed(2)} in South African Rands
+            You are donating {donationAmount} in {selectedCurrency} which is equivalent to{' '}
+            {convertToZar().toFixed(2)} in South African Rands
           </span>
         </div>
       </div>

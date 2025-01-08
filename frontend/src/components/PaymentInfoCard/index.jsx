@@ -1,32 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 
-export default function PaymentInfoCard({
-  donationAmount,
-  userEmail,
-  setUserEmail,
-}) {
+export default function PaymentInfoCard({ donationAmount, userEmail, setUserEmail }) {
   const payfastButtonRef = useRef(null);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userPhone, setUserPhone] = useState("");
-  const [userAddress, setUserAddress] = useState("");
-  const [userCountry, setUserCountry] = useState("");
-  const [userState, setUserState] = useState("");
-  const [userZip, setUserZip] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+  const [userAddress, setUserAddress] = useState('');
+  const [userCountry, setUserCountry] = useState('');
+  const [userState, setUserState] = useState('');
+  const [userZip, setUserZip] = useState('');
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
     const newErrors = {};
 
-    if (!firstName) newErrors.firstName = "First name is required";
-    if (!lastName) newErrors.lastName = "Last name is required";
-    if (!userEmail) newErrors.userEmail = "Email address is required";
-    if (!userPhone) newErrors.userPhone = "Phone number is required";
-    if (!userAddress) newErrors.userAddress = "Address is required";
-    if (!userCountry) newErrors.userCountry = "Country is required";
-    if (!userState) newErrors.userState = "State/Province is required";
-    if (!userZip) newErrors.userZip = "Zip Code is required";
+    if (!firstName) newErrors.firstName = 'First name is required';
+    if (!lastName) newErrors.lastName = 'Last name is required';
+    if (!userEmail) newErrors.userEmail = 'Email address is required';
+    if (!userPhone) newErrors.userPhone = 'Phone number is required';
+    if (!userAddress) newErrors.userAddress = 'Address is required';
+    if (!userCountry) newErrors.userCountry = 'Country is required';
+    if (!userState) newErrors.userState = 'State/Province is required';
+    if (!userZip) newErrors.userZip = 'Zip Code is required';
 
     return newErrors;
   };
@@ -40,10 +36,10 @@ export default function PaymentInfoCard({
     } else {
       setErrors({});
       if (payfastButtonRef.current) {
-        localStorage.setItem("email", userEmail);
+        localStorage.setItem('email', userEmail);
         payfastButtonRef.current.click();
         setTimeout(() => {
-          alert("Redirecting to secure payment page...");
+          alert('Redirecting to secure payment page...');
         }, 1);
       }
     }
@@ -51,23 +47,11 @@ export default function PaymentInfoCard({
 
   return (
     <div className="payment">
-      <form
-        name="PayFastPayNowForm"
-        action="https://payment.payfast.io/eng/process"
-        method="post"
-      >
+      <form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
         <input type="hidden" name="cmd" value="_paynow" />
         <input type="hidden" name="receiver" pattern="[0-9]" value="24730296" />
-        <input
-          type="hidden"
-          name="return_url"
-          value="http://localhost:3000/donate/3"
-        />
-        <input
-          type="hidden"
-          name="cancel_url"
-          value="http://localhost:3000/donate/1"
-        />
+        <input type="hidden" name="return_url" value="http://localhost:3000/donate/3" />
+        <input type="hidden" name="cancel_url" value="http://localhost:3000/donate/1" />
         <input
           type="hidden"
           name="notify_url"
@@ -85,9 +69,7 @@ export default function PaymentInfoCard({
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
-            {errors.firstName && (
-              <span className="error">{errors.firstName}</span>
-            )}
+            {errors.firstName && <span className="error">{errors.firstName}</span>}
           </div>
           <div className="d-flex flex-column payment-input">
             <input
@@ -98,9 +80,7 @@ export default function PaymentInfoCard({
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
-            {errors.lastName && (
-              <span className="error">{errors.lastName}</span>
-            )}
+            {errors.lastName && <span className="error">{errors.lastName}</span>}
           </div>
         </div>
         <div className="input-group payment-info-group">
@@ -113,9 +93,7 @@ export default function PaymentInfoCard({
               value={userEmail}
               onChange={(e) => setUserEmail(e.target.value)}
             />
-            {errors.userEmail && (
-              <span className="error">{errors.userEmail}</span>
-            )}
+            {errors.userEmail && <span className="error">{errors.userEmail}</span>}
           </div>
           <div className="d-flex flex-column payment-input">
             <input
@@ -126,9 +104,7 @@ export default function PaymentInfoCard({
               value={userPhone}
               onChange={(e) => setUserPhone(e.target.value)}
             />
-            {errors.userPhone && (
-              <span className="error">{errors.userPhone}</span>
-            )}
+            {errors.userPhone && <span className="error">{errors.userPhone}</span>}
           </div>
         </div>
         <div className="input-group payment-info-single">
@@ -141,9 +117,7 @@ export default function PaymentInfoCard({
               value={userAddress}
               onChange={(e) => setUserAddress(e.target.value)}
             />
-            {errors.userAddress && (
-              <span className="error">{errors.userAddress}</span>
-            )}
+            {errors.userAddress && <span className="error">{errors.userAddress}</span>}
           </div>
         </div>
         <div className="input-group payment-info-group">
@@ -156,9 +130,7 @@ export default function PaymentInfoCard({
               value={userCountry}
               onChange={(e) => setUserCountry(e.target.value)}
             />
-            {errors.userCountry && (
-              <span className="error">{errors.userCountry}</span>
-            )}
+            {errors.userCountry && <span className="error">{errors.userCountry}</span>}
           </div>
           <div className="d-flex flex-column payment-input">
             <input
@@ -182,9 +154,7 @@ export default function PaymentInfoCard({
               value={userState}
               onChange={(e) => setUserState(e.target.value)}
             />
-            {errors.userState && (
-              <span className="error">{errors.userState}</span>
-            )}
+            {errors.userState && <span className="error">{errors.userState}</span>}
           </div>
         </div>
 
@@ -197,7 +167,7 @@ export default function PaymentInfoCard({
           min="5.00"
           placeholder="5.00"
           value={donationAmount}
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           readOnly
         />
         <input
@@ -205,7 +175,7 @@ export default function PaymentInfoCard({
           name="item_name"
           maxLength="255"
           value="Donation-btn"
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
         />
 
         <input
@@ -214,7 +184,7 @@ export default function PaymentInfoCard({
           alt="Donate Now"
           title="Donate Now with Payfast"
           ref={payfastButtonRef}
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
         />
 
         <div className="text-center mt-4">

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-import goalService from "../../services/goalService";
+import goalService from '../../services/goalService';
 
 export default function Progressbar() {
   const [currentDonations, setCurrentDonations] = useState(0);
@@ -25,17 +25,14 @@ export default function Progressbar() {
   if (currentDonations > 2500) setCurrentDonations(2500);
 
   let lineLength = 500; // Length of the dotted line in pixels
-  let arrowLength =
-    ((currentDonations === 0 ? 1 : currentDonations) / donationGoal) *
-    lineLength;
+  let arrowLength = ((currentDonations === 0 ? 1 : currentDonations) / donationGoal) * lineLength;
 
   const arrowEnd = 10 + arrowLength;
   const arrowLineX2 = arrowLength > 0 ? arrowEnd : 270;
-  const circleVisible = currentDonations > 0;
 
   return (
     <div className="mt-5">
-      <div style={{ width: "100%" }}>
+      <div style={{ width: '100%' }}>
         <svg
           id="svg"
           width="100%"
@@ -52,8 +49,8 @@ export default function Progressbar() {
             y2="25"
             className="dotted-line"
             style={{
-              strokeDasharray: "15, 10",
-              stroke: "black",
+              strokeDasharray: '15, 10',
+              stroke: 'black',
               strokeWidth: 4,
             }}
           ></line>
@@ -63,7 +60,7 @@ export default function Progressbar() {
             x2={arrowLineX2}
             y2="25"
             className="arrow-line"
-            style={{ stroke: "black", strokeWidth: 4 }}
+            style={{ stroke: 'black', strokeWidth: 4 }}
           ></line>
           <image
             x="420"
@@ -80,11 +77,11 @@ export default function Progressbar() {
             href={`${process.env.PUBLIC_URL}/ship.svg`}
             clipPath="url(#clipCircle)"
           />
-          <text x={arrowEnd - 5} y="80" style={{ fontSize: "large", fontWeight: "bold" }}>
+          <text x={arrowEnd - 5} y="80" style={{ fontSize: 'large', fontWeight: 'bold' }}>
             {currentDonations}
           </text>
 
-          <text x="540" y="70" style={{ fontSize: "large", fontWeight: "bold" }}>
+          <text x="540" y="70" style={{ fontSize: 'large', fontWeight: 'bold' }}>
             {donationGoal}
           </text>
         </svg>

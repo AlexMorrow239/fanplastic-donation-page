@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 // import "./index.css";
-import ProgressIndicator from "../ProgressIndicator";
-import DonateAmtCard from "../DonateAmtCard";
-import PaymentInfoCard from "../PaymentInfoCard";
-import MessageCard from "../MessageCard";
+import ProgressIndicator from '../ProgressIndicator';
+import DonateAmtCard from '../DonateAmtCard';
+import PaymentInfoCard from '../PaymentInfoCard';
+import MessageCard from '../MessageCard';
 
 export default function DonationBox({
   baseDonationAmount,
@@ -15,10 +15,10 @@ export default function DonationBox({
   setIsMessageUpdated,
 }) {
   const { step } = useParams(); // Used to control page direction via url for payfast return and cancel urls
-  const [progressStep, setProgressStep] = useState("1");
-  const [cardTitle, setCardTitle] = useState("Sponsor A Pirate!");
-  const [donationMethod, setDonationMethod] = useState("credit card");
-  const [userEmail, setUserEmail] = useState("");
+  const [progressStep, setProgressStep] = useState('1');
+  const [cardTitle, setCardTitle] = useState('Sponsor A Pirate!');
+  const [donationMethod] = useState('credit card');
+  const [userEmail, setUserEmail] = useState('');
   const [donationAmount, setDonationAmount] = useState(baseDonationAmount);
 
   // Set the progress step based on the url parameter
@@ -30,38 +30,32 @@ export default function DonationBox({
 
   // Set the card title based on the progress step
   useEffect(() => {
-    if (progressStep === "1") {
+    if (progressStep === '1') {
       setBaseDonationAmount(50);
     }
     switch (progressStep) {
-      case "1":
-        setCardTitle("Sponsor A Pirate!");
+      case '1':
+        setCardTitle('Sponsor A Pirate!');
         break;
-      case "2":
-        setCardTitle("Payment Information");
+      case '2':
+        setCardTitle('Payment Information');
         break;
-      case "3":
-        setCardTitle("Your Donation Has Been Sent!");
+      case '3':
+        setCardTitle('Your Donation Has Been Sent!');
         break;
       default:
-        setCardTitle("Sponsor A Pirate!");
+        setCardTitle('Sponsor A Pirate!');
     }
-  }, [progressStep]);
+  }, [progressStep, setBaseDonationAmount]);
 
   return (
-    <div
-      className="card bg-grey-trans mb-3 align-items-center donate-card"
-      id="donate-card"
-    >
-      <ProgressIndicator
-        progressStep={progressStep}
-        setProgressStep={setProgressStep}
-      />
+    <div className="card bg-grey-trans mb-3 align-items-center donate-card" id="donate-card">
+      <ProgressIndicator progressStep={progressStep} setProgressStep={setProgressStep} />
 
       <div className="card-body d-flex flex-column align-items-center w-90">
         <h5 className="card-title text-center mb-2">{cardTitle}</h5>
 
-        {progressStep === "1" && (
+        {progressStep === '1' && (
           <DonateAmtCard
             setProgressStep={setProgressStep}
             setBaseDonationAmount={setBaseDonationAmount}
@@ -72,7 +66,7 @@ export default function DonationBox({
             setDonationAmount={setDonationAmount}
           />
         )}
-        {progressStep === "2" && (
+        {progressStep === '2' && (
           <PaymentInfoCard
             setProgressStep={setProgressStep}
             donationAmount={donationAmount}
@@ -80,7 +74,7 @@ export default function DonationBox({
             setUserEmail={setUserEmail}
           />
         )}
-        {progressStep === "3" && (
+        {progressStep === '3' && (
           <MessageCard
             donationMethod={donationMethod}
             setProgressStep={setProgressStep}

@@ -1,26 +1,16 @@
-import React from "react";
+import React from 'react';
 
 export default function PayFastPayNowForm() {
   return (
-    <form
-      name="PayFastPayNowForm"
-      action="https://payment.payfast.io/eng/process"
-      method="post"
-    >
+    <form name="PayFastPayNowForm" action="https://payment.payfast.io/eng/process" method="post">
       <input required type="hidden" name="cmd" value="_paynow" />
-      <input
-        required
-        type="hidden"
-        name="receiver"
-        pattern="[0-9]"
-        value="24730296"
-      />
+      <input required type="hidden" name="receiver" pattern="[0-9]" value="24730296" />
       <table>
         <tbody>
           <tr>
             <td>
               <label id="PayFastAmountLabel" htmlFor="PayFastAmount">
-                Amount:{" "}
+                Amount:{' '}
               </label>
             </td>
             <td>
@@ -39,13 +29,7 @@ export default function PayFastPayNowForm() {
         </tbody>
       </table>
 
-      <input
-        required
-        type="hidden"
-        name="item_name"
-        maxLength="255"
-        value="Donation-btn"
-      />
+      <input required type="hidden" name="item_name" maxLength="255" value="Donation-btn" />
       <table>
         <tbody>
           <tr>

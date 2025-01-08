@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import MessageList from "../MessageList";
+import React, { useState, useEffect } from 'react';
+import MessageList from '../MessageList';
 
-import paymentsService from "../../services/paymentsService";
+import paymentsService from '../../services/paymentsService';
 
 export default function BoxMessages({ isMessageUpdated, setIsMessageUpdated }) {
   const [messages, setMessages] = useState([]);
@@ -17,7 +17,7 @@ export default function BoxMessages({ isMessageUpdated, setIsMessageUpdated }) {
     };
     fetchPmts();
     setIsMessageUpdated(false);
-  }, [isMessageUpdated]);
+  }, [isMessageUpdated, setIsMessageUpdated]);
 
   return (
     <div className="container-fluid mb-5">

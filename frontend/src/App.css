@@ -1,4 +1,4 @@
-@import "~@fortawesome/fontawesome-free/css/all.css";
+@import '~@fortawesome/fontawesome-free/css/all.css';
 
 /* Special styling for input type="number" */
 .no-arrows::-webkit-outer-spin-button,
@@ -13,7 +13,7 @@
 /* Global */
 html,
 body {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -204,7 +204,7 @@ button {
 
 /* Donate Page */
 .titleblock {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   position: relative;
   width: 100%;
 }
@@ -237,7 +237,7 @@ button {
 }
 
 .titleblock p {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   color: #706f6f;
   font-weight: 300;
   font-size: 16px;
@@ -246,7 +246,7 @@ button {
 }
 
 .titleblock b {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: black;
 }
@@ -349,7 +349,7 @@ button {
 }
 
 .headers::after {
-  content: "";
+  content: '';
   display: block;
   padding-bottom: 40%;
 }
@@ -442,13 +442,7 @@ button {
     50% 100%,
     0 calc(100% - 15vmin)
   );
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - 15vmin),
-    50% 100%,
-    0 calc(100% - 15vmin)
-  );
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15vmin), 50% 100%, 0 calc(100% - 15vmin));
 }
 .corner-clip-top {
   /* -webkit-clip-path: polygon(0 0, 50% calc(100% - 15vmin), 100% 0, 100% 100%, 0 100%); */
@@ -475,8 +469,7 @@ button {
   margin-top: -15vmin;
 }
 
-@supports (clip-path: polygon(0 0)) or
-  (-webkit-clip-path: circle(50% at 50% 50%)) {
+@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: circle(50% at 50% 50%)) {
   #svgMask {
     display: none;
   }
@@ -561,7 +554,6 @@ footer .social_icons a {
   height: 50vh;
 }
 
-
 /* PaymentInfoCard styling */
 .error {
   color: red;
@@ -645,7 +637,9 @@ text {
   width: 50px;
   height: 4px;
   background-color: #ccc;
-  transition: background-color 0.3s ease, border 2s ease;
+  transition:
+    background-color 0.3s ease,
+    border 2s ease;
 }
 
 .step-line.in-progress {
@@ -672,7 +666,7 @@ text {
   color: #198754;
   border-radius: 8px;
   bottom: 0;
-  font-weight:bold;
+  font-weight: bold;
 }
 #tierButton:hover {
   color: white;
@@ -683,7 +677,7 @@ text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   white-space: normal;
 }

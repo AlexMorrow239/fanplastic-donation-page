@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // import "./index.css";
 
@@ -16,13 +16,13 @@ export default function ProgressIndicator({ progressStep, setProgressStep }) {
       navigate(`/donate/${nextStep}`);
     }
   };
-  if (progressStep === "1") {
+  if (progressStep === '1') {
     return (
       <div className="progress-indicator d-flex align-items-center justify-content-center my-3">
         <button
           className="step in-progress"
           onClick={() => {
-            handleSetProgressStep(progressStep, "1");
+            handleSetProgressStep(progressStep, '1');
           }}
         ></button>
 
@@ -30,19 +30,19 @@ export default function ProgressIndicator({ progressStep, setProgressStep }) {
         <button
           className="step"
           onClick={() => {
-            handleSetProgressStep(progressStep, "2");
+            handleSetProgressStep(progressStep, '2');
           }}
         ></button>
         <div className="step-line"></div>
         <button
           className="step"
           onClick={() => {
-            handleSetProgressStep(progressStep, "3");
+            handleSetProgressStep(progressStep, '3');
           }}
         ></button>
       </div>
     );
-  } else if (progressStep === "2") {
+  } else if (progressStep === '2') {
     return (
       <div className="progress-indicator d-flex align-items-center justify-content-center my-2">
         <div className="position-relative btn-container">
@@ -50,7 +50,7 @@ export default function ProgressIndicator({ progressStep, setProgressStep }) {
             className="fa fa-check-circle fa-lg text-inspire-green cursor-pointer"
             aria-hidden="true"
             onClick={() => {
-              handleSetProgressStep(progressStep, "1");
+              handleSetProgressStep(progressStep, '1');
             }}
           ></i>
         </div>
@@ -58,26 +58,26 @@ export default function ProgressIndicator({ progressStep, setProgressStep }) {
         <button
           className="step in-progress"
           onClick={() => {
-            handleSetProgressStep(progressStep, "2");
+            handleSetProgressStep(progressStep, '2');
           }}
         ></button>
         <div className="step-line"></div>
         <button
           className="step"
           onClick={() => {
-            handleSetProgressStep(progressStep, "3");
+            handleSetProgressStep(progressStep, '3');
           }}
         ></button>
       </div>
     );
-  } else if (progressStep === "3") {
+  } else if (progressStep === '3') {
     return (
       <div className="progress-indicator d-flex align-items-center justify-content-center my-2">
         <i
           className="fa fa-check-circle fa-lg text-inspire-green cursor-pointer"
           aria-hidden="true"
           onClick={() => {
-            handleSetProgressStep(progressStep, "1");
+            handleSetProgressStep(progressStep, '1');
           }}
         ></i>
         <div className="step-line completed"></div>
@@ -85,14 +85,14 @@ export default function ProgressIndicator({ progressStep, setProgressStep }) {
           className="fa fa-check-circle fa-lg text-inspire-green cursor-pointer"
           aria-hidden="true"
           onClick={() => {
-            handleSetProgressStep(progressStep, "2");
+            handleSetProgressStep(progressStep, '2');
           }}
         ></i>
         <div className="step-line in-progress"></div>
         <button
           className="step in-progress"
           onClick={() => {
-            handleSetProgressStep(progressStep, "3");
+            handleSetProgressStep(progressStep, '3');
           }}
         ></button>
       </div>
